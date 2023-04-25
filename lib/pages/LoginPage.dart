@@ -1,17 +1,81 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
 //Text editin controller
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
 //sign user in method
-  void signUserIn() {}
+  void signUserIn() async {
+    //show loading circle
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+
+    //try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+      //pop the loading circle
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      //pop the loading circle
+      Navigator.pop(context);
+      //Wrong Email
+      if (e.code == 'user-not-found') {
+        //show to error to user
+        wrongEmailMessage();
+      }
+
+      //Wrong Password
+      else if (e.code == 'wrong-password') {
+        //show to error to user
+        wrongPasswordMessage();
+      }
+    }
+  }
+
+  //wrong email message popup
+  void wrongEmailMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Text('Hatalı e-posta girişi !'),
+        );
+      },
+    );
+  }
+
+  //wrong password message popup
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Text('Hatalı şifre girişi !'),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +111,10 @@ class LoginPage extends StatelessWidget {
                 height: 25,
               ),
 
-              //User name textfield
+              //email textfield
               MyTextField(
-                controller: usernameController,
-                hintText: 'Kullanıcı Adı',
+                controller: emailController,
+                hintText: 'Email',
                 obscureText: false,
               ),
 
