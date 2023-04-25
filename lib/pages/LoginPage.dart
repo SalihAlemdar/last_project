@@ -76,7 +76,7 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Şifreni mi unuttun',
+                      'Şifreni mi unuttun ?',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
