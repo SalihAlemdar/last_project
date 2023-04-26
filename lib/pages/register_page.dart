@@ -1,25 +1,27 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
 //Text editin controller
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-//sign user in method
-  void signUserIn() async {
+//sign user up method
+  void signUserUp() async {
     //show loading circle
     showDialog(
         context: context,
@@ -29,12 +31,18 @@ class _LoginPageState extends State<LoginPage> {
           );
         });
 
-    //try sign in
+    //try creating the user
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      //check if password is confirmed
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+      } else {
+        //show error message password don't match
+        wrongConfirmPasswordMessage();
+      }
       //pop the loading circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
@@ -90,6 +98,23 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  void wrongConfirmPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          backgroundColor: Colors.black,
+          title: Text(
+            'Şifreler eşleşmiyor!',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,12 +125,12 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
+                const SizedBox(height: 10),
 
                 //logo
                 const Icon(
                   Icons.lock,
-                  size: 100,
+                  size: 50,
                 ),
 
                 const SizedBox(
@@ -114,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
 
                 //hoşgeldin!
                 const Text(
-                  'Hoşgeldiniz',
+                  'Sizin için bir hesap oluşturalım!',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 20,
@@ -147,6 +172,17 @@ class _LoginPageState extends State<LoginPage> {
                   height: 10,
                 ),
 
+                //Comfirm password textfield
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: 'Şifreyi tekrar giriniz',
+                  obscureText: false,
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
                 //forgot password ?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -171,8 +207,8 @@ class _LoginPageState extends State<LoginPage> {
 
                 //sign in button
                 MyButton(
-                  text: 'Giriş Yap',
-                  onTap: signUserIn,
+                  text: 'Kayıt Ol',
+                  onTap: signUserUp,
                 ),
 
                 const SizedBox(
@@ -242,7 +278,7 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Üye değil misin ?',
+                      'Zaten hesabınız var mı ?',
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.grey[700],
@@ -254,7 +290,7 @@ class _LoginPageState extends State<LoginPage> {
                     GestureDetector(
                       onTap: widget.onTap,
                       child: Text(
-                        'Kayıt Ol',
+                        'Giriş Yap',
                         style: TextStyle(
                           fontSize: 17,
                           color: Colors.blue,
