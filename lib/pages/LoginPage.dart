@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -100,24 +101,15 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
-
-                //logo
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
-
-                const SizedBox(
-                  height: 50,
-                ),
+                //Lottie
+                Lottie.asset('assets/lock.json', height: 230),
 
                 //hoşgeldin!
                 const Text(
-                  'Hoşgeldiniz',
+                  'Hoşgeldiniz...',
                   style: TextStyle(
                     color: Colors.grey,
-                    fontSize: 20,
+                    fontSize: 22,
                   ),
                 ),
 
@@ -176,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
-                  height: 50,
+                  height: 40,
                 ),
 
                 //or continue with
@@ -213,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
-                  height: 50,
+                  height: 30,
                 ),
                 //google + apple sign in buttons
                 Row(
@@ -234,7 +226,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const SizedBox(
-                  height: 50,
+                  height: 45,
                 ),
 
                 //not a member? register now
@@ -244,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                     Text(
                       'Üye değil misin ?',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 19,
                         color: Colors.grey[700],
                       ),
                     ),
@@ -253,10 +245,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: Text(
+                      child: const Text(
                         'Kayıt Ol',
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 19,
                           color: Colors.blue,
                           fontWeight: FontWeight.w700,
                         ),

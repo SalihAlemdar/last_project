@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
+import 'package:lottie/lottie.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -125,17 +126,8 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 10),
-
-                //logo
-                const Icon(
-                  Icons.lock,
-                  size: 50,
-                ),
-
-                const SizedBox(
-                  height: 50,
-                ),
+                //Lottie
+                Lottie.asset('assets/lock.json', height: 150),
 
                 //hoşgeldin!
                 const Text(
@@ -280,7 +272,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Text(
                       'Zaten hesabınız var mı ?',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 19,
                         color: Colors.grey[700],
                       ),
                     ),
@@ -289,10 +281,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: Text(
+                      child: const Text(
                         'Giriş Yap',
                         style: TextStyle(
-                          fontSize: 17,
+                          fontSize: 19,
                           color: Colors.blue,
                           fontWeight: FontWeight.w700,
                         ),
