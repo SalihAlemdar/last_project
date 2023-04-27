@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
+import 'package:last_project/services/services.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
@@ -32,10 +33,12 @@ class _LoginPageState extends State<LoginPage> {
 
     //try sign in
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential credential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
+      ApiConfig.userId = credential.user!.uid;
       //pop the loading circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
