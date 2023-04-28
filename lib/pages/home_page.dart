@@ -49,19 +49,21 @@ class HomePage extends StatelessWidget {
           appBar: AppBar(
               actions: [
                 IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    CupertinoIcons.search,
-                    size: 30,
-                  ),
-                ),
-                IconButton(
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => ProfilePage()));
                   },
                   icon: const Icon(
                     CupertinoIcons.person,
+                    size: 30,
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {
+                    signUserOut();
+                  },
+                  icon: const Icon(
+                    Icons.login_outlined,
                     size: 30,
                   ),
                 ),
