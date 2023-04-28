@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:last_project/pages/all_view.dart';
+import 'package:last_project/pages/all_page.dart';
+import 'package:last_project/pages/profile_page.dart';
 
 import '../components/app_colors.dart';
 import 'folder_page.dart';
@@ -47,14 +48,6 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
               actions: [
-                TextButton(
-                  child: Text(
-                    'Edit',
-                    style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: AppColors.lightTextColor, fontSize: 18),
-                  ),
-                  onPressed: () {},
-                ),
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(
@@ -63,16 +56,12 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProfilePage()));
+                  },
                   icon: const Icon(
-                    CupertinoIcons.ellipsis_circle,
-                    size: 30,
-                  ),
-                ),
-                IconButton(
-                  onPressed: signUserOut,
-                  icon: const Icon(
-                    Icons.logout,
+                    CupertinoIcons.person,
                     size: 30,
                   ),
                 ),
@@ -80,16 +69,16 @@ class HomePage extends StatelessWidget {
               leadingWidth: 0,
               leading: const SizedBox.shrink(),
               title: const Text(
-                'Notes',
+                'Notlarım',
                 style: TextStyle(fontSize: 20),
               ),
               bottom: const TabBar(
                 tabs: [
                   Tab(
-                    text: 'All',
+                    text: 'Notlar',
                   ),
                   Tab(
-                    text: 'Folder',
+                    text: 'Dosyalar',
                   ),
                 ],
               )),

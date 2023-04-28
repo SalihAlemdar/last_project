@@ -29,11 +29,19 @@ class _AddNotePageState extends State<AddNotePage> {
             children: [
               TextField(
                 controller: titleController,
+                decoration: const InputDecoration(
+                  labelText: "Başlık",
+                  hintText: "Başlık giriniz",
+                ),
               ),
               TextField(
                 controller: textController,
-                minLines: 3,
-                maxLines: 5,
+                minLines: 1,
+                maxLines: 15,
+                decoration: const InputDecoration(
+                  labelText: "İçerik",
+                  hintText: "Notunuzu yazınız",
+                ),
               ),
             ],
           )),
@@ -44,7 +52,15 @@ class _AddNotePageState extends State<AddNotePage> {
                   title: titleController.text, text: textController.text);
               widget.addNote();
             },
-            child: Text("Kaydet")),
+            child: const Text(
+              "Kaydet",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                letterSpacing: 0.5,
+                fontWeight: FontWeight.w800,
+              ),
+            )),
       ],
     );
   }

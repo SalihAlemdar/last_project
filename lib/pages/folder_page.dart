@@ -22,53 +22,54 @@ class FolderView extends StatelessWidget {
         ),
       ),
       body: MasonryGridView.count(
-          padding: const EdgeInsets.all(16),
-          crossAxisCount: 2,
-          mainAxisSpacing: 16,
-          crossAxisSpacing: 16,
-          itemCount: 5,
-          itemBuilder: (context, index) => CurvedBox(children: [
-                Lottie.asset('assets/folder.json', repeat: false),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    index == 0
+        padding: const EdgeInsets.all(16),
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        itemCount: 5,
+        itemBuilder: (context, index) => CurvedBox(
+          children: [
+            Lottie.asset('assets/folder.json', repeat: false),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                index == 0
+                    ? Text(
+                        'Önemli',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      )
+                    : index == 1
                         ? Text(
-                            'ToDo',
+                            'Freelancer',
                             style: Theme.of(context).textTheme.titleLarge,
                           )
-                        : index == 1
+                        : index == 2
                             ? Text(
-                                'Freelancer',
+                                'Günlük',
                                 style: Theme.of(context).textTheme.titleLarge,
                               )
-                            : index == 2
+                            : index == 3
                                 ? Text(
-                                    'Daily Life',
+                                    'Alışveriş',
                                     style:
                                         Theme.of(context).textTheme.titleLarge,
                                   )
-                                : index == 3
+                                : index == 4
                                     ? Text(
-                                        'My Targets',
+                                        'Hesaplar',
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge,
                                       )
-                                    : index == 4
-                                        ? Text(
-                                            'Quotes',
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleLarge,
-                                          )
-                                        : const SizedBox.shrink()
-                  ],
-                )
-              ])),
+                                    : const SizedBox.shrink()
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -251,13 +251,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     SquareTitle(
                       imagePath: 'lib/images/google.png',
                     ),
-
-                    SizedBox(width: 30),
-
-                    //appele button
-                    SquareTitle(
-                      imagePath: 'lib/images/apple.png',
-                    ),
                   ],
                 ),
 

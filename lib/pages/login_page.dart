@@ -222,13 +222,6 @@ class _LoginPageState extends State<LoginPage> {
                     SquareTitle(
                       imagePath: 'lib/images/google.png',
                     ),
-
-                    SizedBox(width: 30),
-
-                    //appele button
-                    SquareTitle(
-                      imagePath: 'lib/images/apple.png',
-                    ),
                   ],
                 ),
 
