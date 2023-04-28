@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:last_project/pages/LoginPage.dart';
+import 'package:last_project/pages/login_page.dart';
 import 'package:last_project/pages/register_page.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {

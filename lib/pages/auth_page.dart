@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:last_project/pages/LoginPage.dart';
+import 'package:last_project/pages/login_page.dart';
 import 'package:last_project/providers/note_provider.dart';
 import 'package:last_project/services/services.dart';
 import 'package:provider/provider.dart';

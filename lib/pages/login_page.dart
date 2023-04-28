@@ -35,7 +35,8 @@ class _LoginPageState extends State<LoginPage> {
 
     //try sign in
     try {
-      UserCredential credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential credential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
