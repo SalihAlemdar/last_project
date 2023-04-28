@@ -46,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               padding: const EdgeInsets.all(60.0),
               child: Text(
                 "                   Merhaba                     " + user.email!,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2),

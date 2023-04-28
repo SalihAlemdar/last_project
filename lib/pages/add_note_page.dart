@@ -28,6 +28,10 @@ class _AddNotePageState extends State<AddNotePage> {
           child: Column(
             children: [
               TextField(
+                style: const TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 0.3,
+                    fontWeight: FontWeight.w500),
                 controller: titleController,
                 decoration: const InputDecoration(
                   labelText: "Başlık",
@@ -35,6 +39,10 @@ class _AddNotePageState extends State<AddNotePage> {
                 ),
               ),
               TextField(
+                style: const TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 0.3,
+                    fontWeight: FontWeight.w500),
                 controller: textController,
                 minLines: 1,
                 maxLines: 15,
