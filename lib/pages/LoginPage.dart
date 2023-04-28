@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:last_project/components/my_button.dart';
 import 'package:last_project/components/my_textfield.dart';
 import 'package:last_project/components/square_title.dart';
+import 'package:last_project/providers/note_provider.dart';
 import 'package:last_project/services/services.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -33,12 +35,13 @@ class _LoginPageState extends State<LoginPage> {
 
     //try sign in
     try {
-      UserCredential credential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
+      UserCredential credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
       ApiConfig.userId = credential.user!.uid;
+
+      await context.read<NoteProvider>().getList();
       //pop the loading circle
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
